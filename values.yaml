@@ -82,7 +82,7 @@ ingress:
   enabled: true
   ingressClassName: nginx
   hosts:
-    - nexus.client.or.kr
+    - nexus3.client.or.kr
   annotations:
     kubernetes.io/ingress.provider: nginx
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "15"
