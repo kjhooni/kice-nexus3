@@ -74,8 +74,8 @@ service:
     - port: 5000
       name: docker-hosted
       containerPort: 5000
-      hosts:
-        - nexus3.client.or.kr
+      #hosts:
+        #- nexus3.client.or.kr
   #       - nexus-docker-hosted-2.local
   nodePort: 30081
 ingress:
@@ -89,6 +89,14 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/service-upstream: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  paths:
+    - path: /
+      pathType: Prefix
+      servicePort: 8081
+    - path: /v2/
+      pathType: Prefix
+      servicePort: 5000
+  tls: []
   tls: []
     #ingress:
   # -- If `true`, create an `Ingress` resource.
