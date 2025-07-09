@@ -55,29 +55,14 @@ serviceAccount:
   name:
   # -- If `true`, mount the `ServiceAccount` token.
   automountToken: false
-
 service:
-  # -- Service type.
-  type: NodePort
-  # -- Service annotations.
-  annotations: {}
-  # -- Default port.
-  port: 8081
-  # -- Additional ports to expose.
-  # @default -- See _values.yaml_
   additionalPorts:
-  #   - port: 8082
-  #     name: docker-group
-  #     containerPort: 8082
-  #     hosts:
-  #       - nexus-docker.local
     - port: 5000
       name: docker-hosted
       containerPort: 5000
-      #hosts:
-        #- nexus3.client.or.kr
-  #       - nexus-docker-hosted-2.local
-  nodePort: 30081
+      hosts:
+        - nexus3.client.or.kr
+
 ingress:
   enabled: true
   ingressClassName: nginx
@@ -89,15 +74,49 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/service-upstream: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-  paths:
-    - path: /
-      pathType: Prefix
-      servicePort: 8081
-    - path: /v2/
-      pathType: Prefix
-      servicePort: 5000
   tls: []
-  tls: []
+# service:
+#   # -- Service type.
+#   type: NodePort
+#   # -- Service annotations.
+#   annotations: {}
+#   # -- Default port.
+#   port: 8081
+#   # -- Additional ports to expose.
+#   # @default -- See _values.yaml_
+#   additionalPorts:
+#   #   - port: 8082
+#   #     name: docker-group
+#   #     containerPort: 8082
+#   #     hosts:
+#   #       - nexus-docker.local
+#     - port: 5000
+#       name: docker-hosted
+#       containerPort: 5000
+#       #hosts:
+#         #- nexus3.client.or.kr
+#   #       - nexus-docker-hosted-2.local
+#   nodePort: 30081
+# ingress:
+#   enabled: true
+#   ingressClassName: nginx
+#   hosts:
+#     - nexus3.client.or.kr
+#   annotations:
+#     kubernetes.io/ingress.provider: nginx
+#     nginx.ingress.kubernetes.io/proxy-connect-timeout: "15"
+#     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+#     nginx.ingress.kubernetes.io/service-upstream: "true"
+#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+#   paths:
+#     - path: /
+#       pathType: Prefix
+#       servicePort: 8081
+#     - path: /v2/
+#       pathType: Prefix
+#       servicePort: 5000
+#   tls: []
+#   tls: []
     #ingress:
   # -- If `true`, create an `Ingress` resource.
   #  enabled: true
