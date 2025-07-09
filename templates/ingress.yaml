@@ -1,5 +1,3 @@
-원본
-
 {{- if .Values.ingress.enabled -}}
 {{- $serviceName := include "nexus3.fullname" . -}}
 apiVersion: networking.k8s.io/v1
