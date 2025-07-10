@@ -96,7 +96,7 @@ service:
       #hosts:
         #- nexus3.client.or.kr
   #       - nexus-docker-hosted-2.local
-  nodePort: 30081
+  #nodePort: 30081
 ingress:
   enabled: true
   ingressClassName: nginx
@@ -245,13 +245,13 @@ readinessProbe:
 
 persistence:
   # -- If `true`, persistence should be enabled for the `StatefulSet`.
-  enabled: false
+  enabled: true
   # -- Annotations for the `PersistentVolumeClaim`.
   annotations: {}
   # -- Access mode for the `PersistentVolumeClaim`.
   accessMode: ReadWriteOnce
   # -- Storage class for the `PersistentVolumeClaim`, if not set the default will be used.
-  storageClass:
+  storageClass: ktc-nfs-client
   # -- Size of the `PersistentVolumeClaim`.
   size: 8Gi
   # -- If `true`, keep `PersistentVolumeClaims` when the `StatefulSet` is deleted.
