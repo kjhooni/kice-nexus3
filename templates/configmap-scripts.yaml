@@ -33,8 +33,8 @@ data:
     touch -a /nexus-data/log/tasks/allTasks.log
     touch -a /nexus-data/log/audit/audit.log
     touch -a /nexus-data/log/request.log
-
-    chown -R {{ .Values.podSecurityContext.fsGroup }}:{{ .Values.podSecurityContext.fsGroup }} /nexus-data
+    find /nexus-data -path /nexus-data/.snapshot -prune -o -exec chown {{ .Values.podSecurityContext.fsGroup }}:{{ .Values.podSecurityContext.fsGroup }} {} +
+    # chown -R {{ .Values.podSecurityContext.fsGroup }}:{{ .Values.podSecurityContext.fsGroup }} /nexus-data
   tail-logs.sh: |
     #!/usr/bin/env bash
     set -euo pipefail
